@@ -14,6 +14,11 @@ var onSuccess = function(location) {
 	var distance 	= plugin.google.maps.geometry.spherical.computeDistanceBetween(flagPosition, uLocation);
 	var label 		= document.getElementById("label");
 	label.innerText = "  " + distance.toFixed(0) + " m";
+	
+	
+	var labelLat	= document.getElementById("latlong");
+	labelLat.innerText = location.latLng.lat + ' | ' + location.latLng.lng;
+	
 };
 
 var onError = function(msg) {
@@ -95,6 +100,12 @@ document.addEventListener("deviceready", function()
 	flagPosition = {"lat": 51.224543, "lng": 5.637994};
 	
 	
-	
+	map.on(plugin.google.maps.event.MY_LOCATION_BUTTON_CLICK, function() {
+		console.log("MY_LOCATION_BUTTON_CLICK");
+		
+		//map.clear();
+		map.getMyLocation(gmOptions, onSuccess, onError);
+		
+	});
 	
 }, false);
