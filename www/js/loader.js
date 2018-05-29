@@ -1,5 +1,6 @@
 var map;
 var uLocation;
+var flagPosition;
 
 var gmOptions = {
 	enableHighAccuracy: true // Set true if you want to use GPS. Otherwise, use network.
@@ -9,6 +10,10 @@ var onSuccess = function(location) {
 	console.log("onSuccess");
 	uLocation = location.latLng;
 	console.log(uLocation);
+	
+	var distance 	= plugin.google.maps.geometry.spherical.computeDistanceBetween(flagPosition, uLocation);
+	var label 		= document.getElementById("label");
+	label.innerText = "  " + distance.toFixed(0) + " m";
 };
 
 var onError = function(msg) {
@@ -64,7 +69,7 @@ document.addEventListener("deviceready", function()
 	
 	
 	map.addTileOverlay({
-		debug: true,  // draw debug infomation on tiles
+		debug: false,  // draw debug infomation on tiles
 		opacity: 0.6,
 		getTile: function(x, y, zoom) {
 			return "http://ibirdies.test.desky.nl/clients/ibirdies/themes/images/crossmoor/hole1/{z}/{x}/{y}.png".replace('{z}',zoom).replace('{x}',x).replace('{y}',y);
@@ -87,12 +92,8 @@ document.addEventListener("deviceready", function()
 		
 	});
 	
-	var flagPosition = {"lat": 51.224543, "lng": 5.637994};
-	var distance 	= plugin.google.maps.geometry.spherical.computeDistanceBetween(flagPosition, uLocation);
+	flagPosition = {"lat": 51.224543, "lng": 5.637994};
 	
-	var label 		= document.getElementById("label");
-	label.innerText = "  " + distance.toFixed(0) + " m";
-
 	
 	
 	
