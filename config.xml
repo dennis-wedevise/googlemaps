@@ -22,7 +22,7 @@
     </platform>
     <!--<engine name="ios" spec="^4.5.4" />
     <engine name="android" spec="^6.4.0" />-->
-    <plugin name="cordova-plugin-googlemaps" source="npm" spec="2.3.4">
+    <plugin name="cordova-plugin-googlemaps" source="npm" spec="2.3.6">
 		<!-- https://www.npmjs.com/package/cordova-plugin-googlemaps -->
 		<variable name="API_KEY_FOR_ANDROID" value="AIzaSyB7pLDL104XK_ccYu6ne9j1KksQdgi4hoQ" />
 		<variable name="API_KEY_FOR_IOS" value="AIzaSyB7pLDL104XK_ccYu6ne9j1KksQdgi4hoQ" />

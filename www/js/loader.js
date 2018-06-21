@@ -8,17 +8,18 @@ var gmOptions = {
 
 var onSuccess = function(location) {
 	console.log("onSuccess");
+	
 	uLocation = location.latLng;
 	console.log(uLocation);
 	
-	var distance 	= plugin.google.maps.geometry.spherical.computeDistanceBetween(flagPosition, uLocation);
-	var label 		= document.getElementById("label");
-	label.innerText = "  " + distance.toFixed(0) + " m";
+	//var distance 	= plugin.google.maps.geometry.spherical.computeDistanceBetween(flagPosition, uLocation);
+	//var label 		= document.getElementById("label");
+	//label.innerText = "  " + distance.toFixed(0) + " m";
 	
+	map.moveCamera({ target: location.latLng });
 	
 	var labelLat	= document.getElementById("latlong");
 	labelLat.innerText = location.latLng.lat + ' | ' + location.latLng.lng;
-	
 };
 
 var onError = function(msg) {
@@ -48,10 +49,10 @@ document.addEventListener("deviceready", function()
 			'zoom': true
 		},
 		camera: {
-			target: {
+			/*target: {
 				lat: 51.2243265, 
 				lng: 5.64024165
-			},
+			},*/
 			'tilt': 0,
 			'zoom': 17,
 			'bearing': 272
@@ -73,19 +74,19 @@ document.addEventListener("deviceready", function()
 	map.getMyLocation(gmOptions, onSuccess, onError);
 	
 	
-	map.addTileOverlay({
+	/*map.addTileOverlay({
 		debug: false,  // draw debug infomation on tiles
 		opacity: 0.6,
 		getTile: function(x, y, zoom) {
 			return "http://ibirdies.test.desky.nl/clients/ibirdies/themes/images/crossmoor/hole1/{z}/{x}/{y}.png".replace('{z}',zoom).replace('{x}',x).replace('{y}',y);
 		}
-	});
+	});*/
 
 	
 	/*						*/
 	/* 		FLAG POINTER
 	/*						*/
-	map.addMarker({
+	/*map.addMarker({
 		position: { 
 			lat: 51.224543, 
 			lng: 5.637994
@@ -95,10 +96,20 @@ document.addEventListener("deviceready", function()
 
 		marker.setDisableAutoPan(true);
 		
+	});*/
+	
+	/*
+	map.addMarker({
+		position: { 
+			lat: 51.224543, 
+			lng: 5.637994
+		},
+		draggable: false,
+		disableAutoPan: true
 	});
 	
 	flagPosition = {"lat": 51.224543, "lng": 5.637994};
-	
+	*/
 	
 	map.on(plugin.google.maps.event.MY_LOCATION_BUTTON_CLICK, function() {
 		console.log("MY_LOCATION_BUTTON_CLICK");
